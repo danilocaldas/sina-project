@@ -114,7 +114,7 @@ public class ProcedimentoDAO implements IProcedimentoDAO {
     public List<Procedimento> findAll() {
         Connection conn = null;
         PreparedStatement pstm = null;
-        List<Procedimento> procedimentos = new ArrayList<>();
+        List<Procedimento> procedimentos = new ArrayList<Procedimento>();
         ResultSet rs = null;
         try {
             conn = CriaConexao.getConexao();
@@ -147,7 +147,7 @@ public class ProcedimentoDAO implements IProcedimentoDAO {
     public List<Procedimento> findNome(String nome) {
         Connection conn = null;
         PreparedStatement pstm = null;
-        List<Procedimento> procedimentos = new ArrayList<>();
+        List<Procedimento> procedimentos = new ArrayList<Procedimento>();
         ResultSet rs = null;
         try {
             conn = CriaConexao.getConexao();

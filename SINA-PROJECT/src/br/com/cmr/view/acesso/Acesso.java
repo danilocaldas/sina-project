@@ -55,7 +55,7 @@ public class Acesso extends javax.swing.JFrame {
     }
 
     public List<Usuarios> pesquisar(String nome, String senha) throws SQLException {
-        List<Usuarios> usuarios = new ArrayList<>();
+        List<Usuarios> usuarios = new ArrayList<Usuarios>();
 //        Connection conn = DBConnection.getConnection();
         Connection conn = CriaConexao.getConexao();
         PreparedStatement pstm = null;

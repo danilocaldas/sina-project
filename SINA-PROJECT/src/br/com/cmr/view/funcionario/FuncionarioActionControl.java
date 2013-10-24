@@ -113,22 +113,16 @@ public class FuncionarioActionControl implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "Salvar":
-                onSaveFuncionario();
-                break;
-            case "Novo":
-                enableFields(true);
-                break;
-            case "Cancelar":
-                onCancelar();
-                break;
-            case "Excluir":
-                removerFuncionario();
-                break;
-            case "Atualizar":
-                onAlterarFuncionario();
-                break;
+        if(e.getActionCommand().equals("Salvar")){
+             onSaveFuncionario();
+        }else if(e.getActionCommand().equals("Novo")){
+            enableFields(true);
+        }else if(e.getActionCommand().equals("Cancelar")){
+             onCancelar();
+        }else if(e.getActionCommand().equals("Excluir")){
+            removerFuncionario();
+        }else if(e.getActionCommand().equals("Atualizar")){
+            onAlterarFuncionario();
         }
     }
 
