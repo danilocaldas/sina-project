@@ -35,6 +35,7 @@ public class ProducaoMedica extends Producao{
         this.encaminhamento = encaminhamento;
     }
 
+
     public String getNucleos() {
         return nucleos;
     }
