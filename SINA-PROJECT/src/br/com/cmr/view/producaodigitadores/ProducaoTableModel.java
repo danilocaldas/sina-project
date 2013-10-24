@@ -5,6 +5,7 @@
 package br.com.cmr.view.producaodigitadores;
 
 import br.com.cmr.model.entidade.producao.Producao;
+import br.com.cmr.model.entidade.producao.ProducaoDigitadores;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -19,13 +20,12 @@ public class ProducaoTableModel extends AbstractTableModel {
     private static final int COL_FUNCIONARIO = 1;
     private static final int COL_PRESTADOR = 2;
     private static final int COL_PROCEDIMENTO = 3;
-    private static final int COL_DATA = 4;
-    private static final int COL_DATA_ENTRADA = 5;
-    private static final int COL_DATA_DIGITACAO = 6;
-    private static final int COL_QUANTIDADE = 7;
-    private List<Producao> valores;
+    private static final int COL_DATA_ENTRADA = 4;
+    private static final int COL_DATA_DIGITACAO = 5;
+    private static final int COL_QUANTIDADE = 6;
+    private List<ProducaoDigitadores> valores;
 
-    public ProducaoTableModel(List<Producao> valores) {
+    public ProducaoTableModel(List<ProducaoDigitadores> valores) {
         this.valores = valores;
     }
 
@@ -36,29 +36,27 @@ public class ProducaoTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 8;
+        return 7;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Producao producao = valores.get(rowIndex);
+        ProducaoDigitadores producaoDigitadores = valores.get(rowIndex);
         SimpleDateFormat formatdata = new SimpleDateFormat("dd/MM/yyyy");
         if (columnIndex == COL_ID) {
-            return producao.getId();
+            return producaoDigitadores.getId();
         } else if (columnIndex == COL_FUNCIONARIO) {
-            return producao.getFuncionario();
+            return producaoDigitadores.getFuncionario_nome();
         } else if (columnIndex == COL_PRESTADOR) {
-            return producao.getPrestador();
+            return producaoDigitadores.getPrestador_nome();
         }else if (columnIndex == COL_PROCEDIMENTO) {
-            return producao.getProcedimento();
-        }else if (columnIndex == COL_DATA) {
-            return formatdata.format(producao.getData());
+            return producaoDigitadores.getProcedimento_nome();
         }else if (columnIndex == COL_DATA_ENTRADA) {
-            return formatdata.format(producao.getDataEntrada());
+            return formatdata.format(producaoDigitadores.getEntrada());
         }else if (columnIndex == COL_DATA_DIGITACAO) {
-            return formatdata.format(producao.getDataDigitacao());
+            return formatdata.format(producaoDigitadores.getDigitacao());
         }else if (columnIndex == COL_QUANTIDADE) {
-            return producao.getQuantidade();
+            return producaoDigitadores.getQuantidade();
         }
         return null;
     }
@@ -78,9 +76,6 @@ public class ProducaoTableModel extends AbstractTableModel {
                 break;
             case COL_PROCEDIMENTO:
                 colunas = "Procedimento";
-                break;
-            case COL_DATA:
-                colunas = "Data";
                 break;
             case COL_DATA_ENTRADA:
                 colunas = "Entrada";
@@ -107,8 +102,6 @@ public class ProducaoTableModel extends AbstractTableModel {
             return String.class;
         }else if (columnIndex == COL_PROCEDIMENTO) {
             return String.class;
-        }else if (columnIndex == COL_DATA) {
-            return String.class;
         }else if (columnIndex == COL_DATA_ENTRADA) {
             return String.class;
         }else if (columnIndex == COL_DATA_DIGITACAO) {
@@ -119,7 +112,7 @@ public class ProducaoTableModel extends AbstractTableModel {
         return null; 
     }
     
-     public Producao get(int row){
+     public ProducaoDigitadores get(int row){
         return valores.get(row);
     }
     

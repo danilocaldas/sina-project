@@ -4,13 +4,13 @@
  */
 package br.com.cmr.view.inicio;
 
-import br.com.cmr.view.Acesso;
-import br.com.cmr.view.FormFuncionario;
-import br.com.cmr.view.FormPrestador;
-import br.com.cmr.view.FormProcedimemto;
-import br.com.cmr.view.FormProducao;
-import br.com.cmr.view.FormProducaoMedica;
-import br.com.cmr.view.FormSistema;
+
+import br.com.cmr.view.acesso.Acesso;
+import br.com.cmr.view.funcionario.FormFuncionario;
+import br.com.cmr.view.prestador.FormPrestador;
+import br.com.cmr.view.procedimento.FormProcedimemto;
+import br.com.cmr.view.producaodigitadores.FormProducao;
+import br.com.cmr.view.producaomedica.FormProducaoMedica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;

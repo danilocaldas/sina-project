@@ -21,12 +21,12 @@ public class ProducaoController {
         this.facade = new ProducaoDigitadoresFacade();
     }
 
-    public int salvarProducao(ProducaoDigitadores producao) {
-        return facade.save(producao);
+    public int salvarProducao(ProducaoDigitadores producaoDigitadores) {
+        return facade.save(producaoDigitadores);
     }
 
-    public int atualizarProducao(ProducaoDigitadores producao) {
-        return facade.update(producao);
+    public int atualizarProducao(ProducaoDigitadores producaoDigitadores) {
+        return facade.update(producaoDigitadores);
     }
 
     public int deletarProducao(Long id) {

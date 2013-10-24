@@ -4,7 +4,7 @@
  */
 package br.com.cmr.view.producaomedica;
 
-import br.com.cmr.model.entity.ProducaoMedica;
+import br.com.cmr.model.entidade.producao.ProducaoMedica;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -51,15 +51,15 @@ public class ProducaoMedicaTableModel extends AbstractTableModel {
         } else if (columnIndex == COL_ENTRADA_CMR) {
             return pMedica.getEntradaCmr();
         } else if (columnIndex == COL_PRESTADOR) {
-            return pMedica.getPrestador();
+            return pMedica.getPrestador_nome();
         } else if (columnIndex == COL_PROCEDIMENTO) {
-            return pMedica.getProcedimento();
+            return pMedica.getProcedimento_nome();
         } else if (columnIndex == COL_QUANTIDADE_LAUDOS) {
             return pMedica.getQuantidade();
         } else if (columnIndex == COL_DATA_ANALISE) {
             return pMedica.getAnalise();
         } else if (columnIndex == COL_FUNCIONARIO) {
-            return pMedica.getFuncionario();
+            return pMedica.getFuncionario_nome();
         } else if (columnIndex == COL_DATA_ENCAMINHAMENTO) {
             return pMedica.getEncaminhamento();
         } else if (columnIndex == COL_NUCLEOS) {
