@@ -35,6 +35,7 @@ public class CriaConexao {
     }
 
     public static void close(Connection conn, PreparedStatement pstm, ResultSet rs) {
+        System.out.println("Desconectando ao banco!");
         try {
             if (conn != null) {
                 conn.close();
