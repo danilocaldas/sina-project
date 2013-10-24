@@ -195,8 +195,8 @@ public class ProducaoMedicaActionControl implements ActionListener {
         }
         if (result == 1) {
             JOptionPane.showMessageDialog(form, "Produção inserido com sucesso!");
-            enableFilds(false);
-            onCancelar();
+            //enableFilds(false);
+            //onCancelar();
         } else {
             JOptionPane.showMessageDialog(form, "Tente novamente!");
         }
@@ -220,8 +220,8 @@ public class ProducaoMedicaActionControl implements ActionListener {
         form.getComboFuncionario().setSelectedItem(pMedica.getFuncionario_nome());
         form.getTxtEncaminhamento().setDate(pMedica.getEncaminhamento());
         form.getComboNucleos().setSelectedItem(pMedica.getNucleos());
-        enableFilds(true);
-        refreshCombo();
+        //enableFilds(true);
+        //refreshCombo();
     }
 
     private void removerProducao() {
