@@ -13,6 +13,7 @@ import br.com.cmr.model.entidade.funcionario.Funcionario;
 import br.com.cmr.model.entidade.prestador.Prestador;
 import br.com.cmr.model.entidade.procedimento.Procedimento;
 import br.com.cmr.model.entidade.producao.Producao;
+import br.com.cmr.model.entidade.producao.ProducaoDigitadores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -27,7 +28,7 @@ import javax.swing.JOptionPane;
 public class ProducaoActionControl implements ActionListener {
 
     public FormProducao frm;
-    public List<Producao> listProducao;
+    public List<ProducaoDigitadores> listProducao;
     public List<Procedimento> listProdimento;
     public List<Prestador> listPrestador;
     public List<Funcionario> listFuncionario;
@@ -124,7 +125,6 @@ public class ProducaoActionControl implements ActionListener {
         frm.getTxtDataDigitacao().setEnabled(enabled);
         frm.getTxtQuantidade().setEnabled(enabled);
 
-
     }
 
     private void onCancelar() {
@@ -172,33 +172,24 @@ public class ProducaoActionControl implements ActionListener {
     }
 
     private void onSaveProducao() {
-        Producao producao = new Producao();
-        if (verificarPreencherDatas()) {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date dataEntrada = (java.util.Date) frm.getTxtDataEntrada().getDate();
             java.util.Date dataDigitacao = (java.util.Date) frm.getTxtDataDigitacao().getDate();
-            java.util.Date d = new java.util.Date();
-            Date data = Date.valueOf(formato.format(d));
-            producao.setData(data);
-            producao.setDataEntrada(Date.valueOf(formato.format(dataEntrada)));
-            producao.setDataDigitacao(Date.valueOf(formato.format(dataDigitacao)));
-            producao.setFuncionario(frm.getComboFuncionario().getSelectedItem().toString());
-            producao.setPrestador(frm.getComboPrestador().getSelectedItem().toString());
-            producao.setProcedimento(frm.getComboProcedimento().getSelectedItem().toString());
-
-            producao.setQuantidade(frm.getTxtQuantidade().getText());
-
-        } else {
-            JOptionPane.showMessageDialog(frm, "Todos os campos são obrigatórios!");
-            return;
-        }
+            ProducaoDigitadores producaoDigitadores = new ProducaoDigitadores(
+                    Date.valueOf(formato.format(dataEntrada)),
+                    Date.valueOf(formato.format(dataDigitacao)),
+                    Integer.valueOf(frm.getTxtQuantidade().getText()),
+                    Long.MAX_VALUE,
+                    frm.getComboFuncionario().getSelectedItem().toString(),
+                    frm.getComboPrestador().getSelectedItem().toString(),
+                    frm.getComboProcedimento().getSelectedItem().toString());
 
         int result = 0;
         if (idProducao == null) {
-            result = new ProducaoController().salvarProducao(producao);
+            result = new ProducaoController().salvarProducao(producaoDigitadores);
         } else {
-            producao.setId(idProducao);
-            result = new ProducaoController().atualizarProducao(producao);
+            producaoDigitadores.setId(idProducao);
+            result = new ProducaoController().atualizarProducao(producaoDigitadores);
             idProducao = null;
         }
 
@@ -218,20 +209,16 @@ public class ProducaoActionControl implements ActionListener {
             JOptionPane.showMessageDialog(frm, "Selecione a produção a ser alterada!");
             return;
         }
-        Producao producao = new ProducaoTableModel(listProducao).get(indexRow);
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date d = new java.util.Date();
-        Date data = Date.valueOf(formato.format(d));
+        ProducaoDigitadores producaoDigitadores = new ProducaoTableModel(listProducao).get(indexRow);
 
-        idProducao = producao.getId();
-        frm.getTxtId().setText(String.valueOf(producao.getId()));
-        frm.getComboFuncionario().setSelectedItem(producao.getFuncionario());
-        frm.getComboPrestador().setSelectedItem(producao.getPrestador());
-        frm.getComboProcedimento().setSelectedItem(producao.getProcedimento());
-        producao.setData(data);
-        frm.getTxtDataEntrada().setDate(producao.getDataEntrada());
-        frm.getTxtDataDigitacao().setDate(producao.getDataDigitacao());
-        frm.getTxtQuantidade().setText(producao.getQuantidade());
+        idProducao = producaoDigitadores.getId();
+        frm.getTxtId().setText(String.valueOf(producaoDigitadores.getId()));
+        frm.getComboFuncionario().setSelectedItem(producaoDigitadores.getFuncionario_nome());
+        frm.getComboPrestador().setSelectedItem(producaoDigitadores.getPrestador_nome());
+        frm.getComboProcedimento().setSelectedItem(producaoDigitadores.getProcedimento_nome());
+        frm.getTxtDataEntrada().setDate(producaoDigitadores.getEntrada());
+        frm.getTxtDataDigitacao().setDate(producaoDigitadores.getDigitacao());
+        frm.getTxtQuantidade().setText(String.valueOf(producaoDigitadores.getQuantidade()));
         enableFilds(true);
 
     }

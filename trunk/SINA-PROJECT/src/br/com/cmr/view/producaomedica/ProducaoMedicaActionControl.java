@@ -4,17 +4,14 @@
  */
 package br.com.cmr.view.producaomedica;
 
-import br.com.cmr.controller.FuncionarioController;
-import br.com.cmr.controller.PrestadorController;
-import br.com.cmr.controller.ProcedimentoController;
-import br.com.cmr.controller.ProducaoMedicaController;
-import br.com.cmr.model.entity.Funcionario;
-import br.com.cmr.model.entity.Prestador;
-import br.com.cmr.model.entity.Procedimento;
-import br.com.cmr.model.entity.ProducaoMedica;
-import br.com.cmr.view.FormProducaoMedica;
-import br.com.cmr.view.tables.ProducaoMedicaCellRenderer;
-import br.com.cmr.view.tables.ProducaoMedicaTableModel;
+import br.com.cmr.control.controller.funcionario.FuncionarioController;
+import br.com.cmr.control.controller.prestador.PrestadorController;
+import br.com.cmr.control.controller.procedimento.ProcedimentoController;
+import br.com.cmr.control.controller.producaomedica.ProducaoMedicaController;
+import br.com.cmr.model.entidade.funcionario.Funcionario;
+import br.com.cmr.model.entidade.prestador.Prestador;
+import br.com.cmr.model.entidade.procedimento.Procedimento;
+import br.com.cmr.model.entidade.producao.ProducaoMedica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -173,24 +170,20 @@ public class ProducaoMedicaActionControl implements ActionListener {
     }
 
     private void onSaveProducao() {
-        ProducaoMedica pMedica = new ProducaoMedica();
-        if (verificarPreencherDatas()) {
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date dataEntrada = (java.util.Date) form.getTxtDataEntrada().getDate();
-            java.util.Date dataAnalise = (java.util.Date) form.getTxtDataAnalise().getDate();
-            java.util.Date dataEncaminhamento = (java.util.Date) form.getTxtEncaminhamento().getDate();
-            pMedica.setEntradaCmr(Date.valueOf(formato.format(dataEntrada)));
-            pMedica.setPrestador(form.getComboPrestador().getSelectedItem().toString());
-            pMedica.setProcedimento(form.getComboProcedimento().getSelectedItem().toString());
-            pMedica.setQuantidade(Integer.parseInt(form.getTxtQtdLaudos().getText()));
-            pMedica.setAnalise(Date.valueOf(formato.format(dataAnalise)));
-            pMedica.setFuncionario(form.getComboFuncionario().getSelectedItem().toString());
-            pMedica.setEncaminhamento(Date.valueOf(formato.format(dataEncaminhamento)));
-            pMedica.setNucleos(form.getComboNucleos().getSelectedItem().toString());
-        } else {
-            JOptionPane.showMessageDialog(form, "Todos os campos são obrigatórios!");
-            return;
-        }
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date dataEntrada = (java.util.Date) form.getTxtDataEntrada().getDate();
+        java.util.Date dataAnalise = (java.util.Date) form.getTxtDataAnalise().getDate();
+        java.util.Date dataEncaminhamento = (java.util.Date) form.getTxtEncaminhamento().getDate();
+        ProducaoMedica pMedica = new ProducaoMedica(
+                form.getComboNucleos().getSelectedItem().toString(),
+                Integer.parseInt(form.getTxtQtdLaudos().getText()),
+                Date.valueOf(formato.format(dataEntrada)),
+                Date.valueOf(formato.format(dataAnalise)),
+                Date.valueOf(formato.format(dataEncaminhamento)),
+                Long.MAX_VALUE,
+                form.getComboFuncionario().getSelectedItem().toString(),
+                form.getComboPrestador().getSelectedItem().toString(),
+                form.getComboProcedimento().getSelectedItem().toString());
 
         int result = 0;
         if (idProducaoMedica == null) {
@@ -220,11 +213,11 @@ public class ProducaoMedicaActionControl implements ActionListener {
         idProducaoMedica = pMedica.getId();
         form.getLabelID().setText(String.valueOf(pMedica.getId()));
         form.getTxtDataEntrada().setDate(pMedica.getEntradaCmr());
-        form.getComboPrestador().setSelectedItem(pMedica.getPrestador());
-        form.getComboProcedimento().setSelectedItem(pMedica.getProcedimento());
+        form.getComboPrestador().setSelectedItem(pMedica.getPrestador_nome());
+        form.getComboProcedimento().setSelectedItem(pMedica.getProcedimento_nome());
         form.getTxtQtdLaudos().setText(String.valueOf(pMedica.getQuantidade()));
         form.getTxtDataAnalise().setDate(pMedica.getAnalise());
-        form.getComboFuncionario().setSelectedItem(pMedica.getFuncionario());
+        form.getComboFuncionario().setSelectedItem(pMedica.getFuncionario_nome());
         form.getTxtEncaminhamento().setDate(pMedica.getEncaminhamento());
         form.getComboNucleos().setSelectedItem(pMedica.getNucleos());
         enableFilds(true);
@@ -267,5 +260,5 @@ public class ProducaoMedicaActionControl implements ActionListener {
         form.getComboPrestador().removeAllItems();
         form.getComboProcedimento().removeAllItems();
     }
-    
+
 }

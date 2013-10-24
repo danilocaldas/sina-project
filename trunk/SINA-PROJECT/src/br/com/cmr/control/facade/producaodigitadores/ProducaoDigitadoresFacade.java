@@ -22,12 +22,12 @@ public class ProducaoDigitadoresFacade {
         this.dao = new ProducaoDigitadoresDAO();
     }
     
-    public int save(ProducaoDigitadores producao){
-        return dao.save(producao);
+    public int save(ProducaoDigitadores producaoDigitadores){
+        return dao.save(producaoDigitadores);
     }
     
-    public int update(ProducaoDigitadores producao){
-        return dao.update(producao);
+    public int update(ProducaoDigitadores producaoDigitadores){
+        return dao.update(producaoDigitadores);
     }
     
     public int remove(Long id){
