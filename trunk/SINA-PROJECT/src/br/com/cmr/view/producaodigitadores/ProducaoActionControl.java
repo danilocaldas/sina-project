@@ -136,31 +136,23 @@ public class ProducaoActionControl implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "Novo":
-                enableFilds(true);
-                break;
-            case "Cancelar":
-                onCancelar();
-                enableFilds(false);
-                break;
-            case "Salvar":
-                onSaveProducao();
-                break;
-            case "Atualizar":
-                onAlterarProducao();
-                break;
-            case "Excluir":
-                removerProducao();
-                break;
-            case "Pesquisar":
-                pesquisarProducaoGeral();
-                pesquisarProdPorProfissional();
-                pesquisarProdPorPrestador();
-                pesquisarProdPorPeriodo();
-                pesquisarProdPorPeriodoProfissional();
+        if (e.getActionCommand().equals("Salvar")) {
+            onSaveProducao();
+        } else if (e.getActionCommand().equals("Novo")) {
+            enableFilds(true);
+        } else if (e.getActionCommand().equals("Cancelar")) {
+            onCancelar();
+        } else if (e.getActionCommand().equals("Excluir")) {
+            removerProducao();
+        } else if (e.getActionCommand().equals("Atualizar")) {
+            onAlterarProducao();
+        } else if (e.getActionCommand().equals("Pesquisar")) {
+            pesquisarProducaoGeral();
+            pesquisarProdPorProfissional();
+            pesquisarProdPorPrestador();
+            pesquisarProdPorPeriodo();
+            pesquisarProdPorPeriodoProfissional();
         }
-
     }
 
     private boolean verificarPreencherDatas() {
@@ -172,17 +164,17 @@ public class ProducaoActionControl implements ActionListener {
     }
 
     private void onSaveProducao() {
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date dataEntrada = (java.util.Date) frm.getTxtDataEntrada().getDate();
-            java.util.Date dataDigitacao = (java.util.Date) frm.getTxtDataDigitacao().getDate();
-            ProducaoDigitadores producaoDigitadores = new ProducaoDigitadores(
-                    Date.valueOf(formato.format(dataEntrada)),
-                    Date.valueOf(formato.format(dataDigitacao)),
-                    Integer.valueOf(frm.getTxtQuantidade().getText()),
-                    Long.MAX_VALUE,
-                    frm.getComboFuncionario().getSelectedItem().toString(),
-                    frm.getComboPrestador().getSelectedItem().toString(),
-                    frm.getComboProcedimento().getSelectedItem().toString());
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date dataEntrada = (java.util.Date) frm.getTxtDataEntrada().getDate();
+        java.util.Date dataDigitacao = (java.util.Date) frm.getTxtDataDigitacao().getDate();
+        ProducaoDigitadores producaoDigitadores = new ProducaoDigitadores(
+                Date.valueOf(formato.format(dataEntrada)),
+                Date.valueOf(formato.format(dataDigitacao)),
+                Integer.valueOf(frm.getTxtQuantidade().getText()),
+                Long.MAX_VALUE,
+                frm.getComboFuncionario().getSelectedItem().toString(),
+                frm.getComboPrestador().getSelectedItem().toString(),
+                frm.getComboProcedimento().getSelectedItem().toString());
 
         int result = 0;
         if (idProducao == null) {

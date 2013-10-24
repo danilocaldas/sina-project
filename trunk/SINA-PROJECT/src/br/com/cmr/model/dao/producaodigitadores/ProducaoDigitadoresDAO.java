@@ -122,7 +122,7 @@ public class ProducaoDigitadoresDAO implements IProducaoDigitadoresDAO {
     public List<ProducaoDigitadores> findAll() {
         Connection conn = DBConnection.getConnection();
         PreparedStatement pstm = null;
-        List<ProducaoDigitadores> producoes = new ArrayList<>();
+        List<ProducaoDigitadores> producoes = new ArrayList<ProducaoDigitadores>();
         ResultSet rs = null;
         try {
             pstm = conn.prepareStatement(sqlFindAll);
@@ -156,7 +156,7 @@ public class ProducaoDigitadoresDAO implements IProducaoDigitadoresDAO {
     public List<ProducaoDigitadores> findProPeriodo(Date dataInicial, Date dataFinal) {
         Connection conn = DBConnection.getConnection();
         PreparedStatement pstm = null;
-        List<ProducaoDigitadores> producoes = new ArrayList<>();
+        List<ProducaoDigitadores> producoes = new ArrayList<ProducaoDigitadores>();
         ResultSet rs = null;
         try {
             pstm = conn.prepareStatement(sqlFindProPeriodo);
@@ -192,7 +192,7 @@ public class ProducaoDigitadoresDAO implements IProducaoDigitadoresDAO {
     public List<ProducaoDigitadores> findProFuncionario(String funcionario) {
         Connection conn = DBConnection.getConnection();
         PreparedStatement pstm = null;
-        List<ProducaoDigitadores> producoes = new ArrayList<>();
+        List<ProducaoDigitadores> producoes = new ArrayList<ProducaoDigitadores>();
         ResultSet rs = null;
         try {
             pstm = conn.prepareStatement(sqlFindProFuncionario);
@@ -227,7 +227,7 @@ public class ProducaoDigitadoresDAO implements IProducaoDigitadoresDAO {
     public List<ProducaoDigitadores> findProFuncioPeriodo(String funcionario, Date dataInicial, Date dataFinal) {
         Connection conn = DBConnection.getConnection();
         PreparedStatement pstm = null;
-        List<ProducaoDigitadores> producoes = new ArrayList<>();
+        List<ProducaoDigitadores> producoes = new ArrayList<ProducaoDigitadores>();
         ResultSet rs = null;
         try {
             pstm = conn.prepareStatement(sqlFindProFuncioPeriodo);
@@ -264,7 +264,7 @@ public class ProducaoDigitadoresDAO implements IProducaoDigitadoresDAO {
     public List<ProducaoDigitadores> findProPrestador(String prestador) {
         Connection conn = DBConnection.getConnection();
         PreparedStatement pstm = null;
-        List<ProducaoDigitadores> producoes = new ArrayList<>();
+        List<ProducaoDigitadores> producoes = new ArrayList<ProducaoDigitadores>();
         ResultSet rs = null;
         try {
             pstm = conn.prepareStatement(sqlFindProPrestador);

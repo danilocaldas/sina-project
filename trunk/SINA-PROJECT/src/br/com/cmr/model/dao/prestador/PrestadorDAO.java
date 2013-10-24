@@ -114,7 +114,7 @@ public class PrestadorDAO implements IPrestadorDAO{
     public List<Prestador> findAll() {
         Connection conn = null;
         PreparedStatement pstm = null;
-        List<Prestador> prestadores = new ArrayList<>();
+        List<Prestador> prestadores = new ArrayList<Prestador>();
         ResultSet rs = null;
         try {
             conn = CriaConexao.getConexao();
@@ -147,7 +147,7 @@ public class PrestadorDAO implements IPrestadorDAO{
     public List<Prestador> findNome(String nome) {
         Connection conn = null;
         PreparedStatement pstm = null;
-        List<Prestador> prestadores = new ArrayList<>();
+        List<Prestador> prestadores = new ArrayList<Prestador>();
         ResultSet rs = null;
         try {
             conn = CriaConexao.getConexao();

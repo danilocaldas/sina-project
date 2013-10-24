@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
  *
  * @author Danilo
  */
-public class PrestadorActionControl implements ActionListener{
-    
+public class PrestadorActionControl implements ActionListener {
+
     private FormPrestador frm;
-    private List<Prestador>listPrestador;
+    private List<Prestador> listPrestador;
     private Long idPrestador;
 
     public PrestadorActionControl(FormPrestador frm) {
@@ -28,35 +28,32 @@ public class PrestadorActionControl implements ActionListener{
         enableFields(false);
         frm.getTxtId().setEnabled(false);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "Salvar":
-                onSavePrestador();
-                break;
-            case "Novo":
-                enableFields(true);
-                break;
-            case "Cancelar":
-                onCancelar();
-                break;
-            case "Excluir":
-                removerPrestador();
-                break;
-            case "Atualizar":
-                onAlterarPrestador();
-                break;
-        } 
-    }    
-    private void addButoesToForm(){
+
+        if (e.getActionCommand().equals("Salvar")) {
+            onSavePrestador();
+        } else if (e.getActionCommand().equals("Novo")) {
+            enableFields(true);
+        } else if (e.getActionCommand().equals("Cancelar")) {
+            onCancelar();
+        } else if (e.getActionCommand().equals("Excluir")) {
+            removerPrestador();
+        } else if (e.getActionCommand().equals("Atualizar")) {
+            onAlterarPrestador();
+        }
+    }
+
+    private void addButoesToForm() {
         frm.getBtNovo().addActionListener(this);
         frm.getBtAtualizar().addActionListener(this);
         frm.getBtSalvar().addActionListener(this);
         frm.getBtExcluir().addActionListener(this);
         frm.getBtCancelar().addActionListener(this);
-        
+
     }
+
     private void onCancelar() {
         enableFields(false);
         frm.getTxtId().setText("");
@@ -67,7 +64,7 @@ public class PrestadorActionControl implements ActionListener{
     private void onSavePrestador() {
         Prestador prestador = new Prestador();
         if (frm.getTxtCnes().getText().length() > 0
-                && frm.getTxtNome().getText().length() > 0 ) {
+                && frm.getTxtNome().getText().length() > 0) {
             prestador.setCnes(frm.getTxtCnes().getText().toUpperCase());
             prestador.setNome(frm.getTxtNome().getText().toUpperCase());
         } else {
@@ -76,7 +73,7 @@ public class PrestadorActionControl implements ActionListener{
         }
 
         int result = 0;
-        
+
         if (idPrestador == null) {
             result = new PrestadorController().addPrestador(prestador);
         } else {
@@ -84,7 +81,7 @@ public class PrestadorActionControl implements ActionListener{
             result = new PrestadorController().updatePrestador(prestador);
             idPrestador = null;
         }
-        if(result == 1){
+        if (result == 1) {
             JOptionPane.showMessageDialog(frm, "Prestador inserido com sucesso!");
             enableFields(false);
             onCancelar();
@@ -93,7 +90,7 @@ public class PrestadorActionControl implements ActionListener{
             JOptionPane.showMessageDialog(frm, "Tente novamente!");
         }
     }
-    
+
     private void onAlterarPrestador() {
         int indexRow = frm.getTbPrestador().getSelectedRow();
         if (indexRow == -1) {
@@ -130,7 +127,7 @@ public class PrestadorActionControl implements ActionListener{
 
     private void refreshTable() {
         listPrestador = new PrestadorController().finfPrestador();
-        if(listPrestador != null){
+        if (listPrestador != null) {
             frm.getTbPrestador().setModel(new PrestadorTableModel(listPrestador));
             frm.getTbPrestador().setDefaultRenderer(Object.class, new ProcPrestCellRenderer());
         }
@@ -140,5 +137,4 @@ public class PrestadorActionControl implements ActionListener{
         frm.getTxtCnes().setEnabled(enable);
         frm.getTxtNome().setEnabled(enable);
     }
-    
 }

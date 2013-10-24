@@ -110,7 +110,7 @@ public class UsuariosDAO implements IUsuariosDAO {
         public List<Usuarios> listar() {
         Connection conn = null;
         PreparedStatement pstm = null;
-        List<Usuarios> usuarios = new ArrayList<>();
+        List<Usuarios> usuarios = new ArrayList<Usuarios>();
         ResultSet rs = null;
         try {
             conn = CriaConexao.getConexao();

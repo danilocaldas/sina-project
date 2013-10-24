@@ -132,32 +132,29 @@ public class ProducaoMedicaActionControl implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "Novo":
-                enableFilds(true);
-                refreshCombo();
-                break;
-            case "Cancelar":
-                onCancelar();
-                enableFilds(false);
-                break;
-            case "Salvar":
-                onSaveProducao();
-                break;
-            case "Atualizar":
-                onAlterarProducao();
-                break;
-            case "Excluir":
-                removerProducao();
-                break;
-            case "PESQUISAR":
-                if (form.getTxtDataDe().getDate() != null && form.getTxtDataAte().getDate() != null) {
-                    refreshTableNomePeriodo();
-                } else {
-                    JOptionPane.showMessageDialog(form, "As datas são necessárias para pesquisa.",
-                            "Validação", JOptionPane.ERROR_MESSAGE);
-                }
+        if (e.getActionCommand().equals("Salvar")) {
+            onSaveProducao();
+        } else if (e.getActionCommand().equals("Novo")) {
+            enableFilds(true);
+            refreshCombo();
+        } else if (e.getActionCommand().equals("Cancelar")) {
+            onCancelar();
+            enableFilds(false);
+        } else if (e.getActionCommand().equals("Excluir")) {
+            removerProducao();
+        } else if (e.getActionCommand().equals("Atualizar")) {
+            onAlterarProducao();
+        } else if (e.getActionCommand().equals("PESQUISAR")) {
+            if (form.getTxtDataDe().getDate() != null && form.getTxtDataAte().getDate() != null) {
+                refreshTableNomePeriodo();
+            } else {
+                JOptionPane.showMessageDialog(form, "As datas são necessárias para pesquisa.",
+                        "Validação", JOptionPane.ERROR_MESSAGE);
+
+            }
+
         }
+
     }
 
     private boolean verificarPreencherDatas() {
@@ -260,5 +257,4 @@ public class ProducaoMedicaActionControl implements ActionListener {
         form.getComboPrestador().removeAllItems();
         form.getComboProcedimento().removeAllItems();
     }
-
 }

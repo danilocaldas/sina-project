@@ -129,22 +129,17 @@ public class ProcedimentoActionControl implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "Salvar":
-                onSaveProcedimento();
-                break;
-            case "Novo":
-                enableFields(true);
-                break;
-            case "Cancelar":
-                onCancelar();
-                break;
-            case "Excluir":
-                removerProcedimento();
-                break;
-            case "Atualizar":
-                onAlterarProcedimento();
-                break;
+
+        if (e.getActionCommand().equals("Salvar")) {
+            onSaveProcedimento();
+        } else if (e.getActionCommand().equals("Novo")) {
+            enableFields(true);
+        } else if (e.getActionCommand().equals("Cancelar")) {
+            onCancelar();
+        } else if (e.getActionCommand().equals("Excluir")) {
+            removerProcedimento();
+        } else if (e.getActionCommand().equals("Atualizar")) {
+            onAlterarProcedimento();
         }
     }
 }

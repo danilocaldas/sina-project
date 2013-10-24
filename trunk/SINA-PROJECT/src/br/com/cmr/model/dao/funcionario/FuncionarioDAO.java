@@ -119,7 +119,7 @@ public class FuncionarioDAO implements IFuncionarioDAO{
     public List<Funcionario> findAll() {
         Connection conn = null;
         PreparedStatement pstm = null;
-        List<Funcionario> funcionarios = new ArrayList<>();
+        List<Funcionario> funcionarios = new ArrayList<Funcionario>();
         ResultSet rs = null;
         try {
             conn = CriaConexao.getConexao();
@@ -153,7 +153,7 @@ public class FuncionarioDAO implements IFuncionarioDAO{
     public List<Funcionario> findNome(String nome) {
         Connection conn = null;
         PreparedStatement pstm = null;
-        List<Funcionario> funcionarios = new ArrayList<>();
+        List<Funcionario> funcionarios = new ArrayList<Funcionario>();
         ResultSet rs = null;
         try {
             conn = CriaConexao.getConexao();
@@ -185,7 +185,7 @@ public class FuncionarioDAO implements IFuncionarioDAO{
     public List<Funcionario> findNomeMedico() {
         Connection conn = null;
         PreparedStatement pstm = null;
-        List<Funcionario> funcionarios = new ArrayList<>();
+        List<Funcionario> funcionarios = new ArrayList<Funcionario>();
         ResultSet rs = null;
         try {
             conn = CriaConexao.getConexao();
@@ -216,7 +216,7 @@ public class FuncionarioDAO implements IFuncionarioDAO{
     public List<Funcionario> findNomeDigitador() {
         Connection conn = null;
         PreparedStatement pstm = null;
-        List<Funcionario> funcionarios = new ArrayList<>();
+        List<Funcionario> funcionarios = new ArrayList<Funcionario>();
         ResultSet rs = null;
         try {
             conn = CriaConexao.getConexao();
