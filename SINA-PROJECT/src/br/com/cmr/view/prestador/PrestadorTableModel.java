@@ -5,7 +5,6 @@
 package br.com.cmr.view.prestador;
 
 import br.com.cmr.model.entidade.prestador.Prestador;
-
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 

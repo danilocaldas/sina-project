@@ -6,9 +6,7 @@ package br.com.cmr.view.procedimento;
 
 import br.com.cmr.control.controller.procedimento.ProcedimentoController;
 import br.com.cmr.model.entidade.procedimento.Procedimento;
-
 import br.com.cmr.view.prestador.ProcPrestCellRenderer;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;

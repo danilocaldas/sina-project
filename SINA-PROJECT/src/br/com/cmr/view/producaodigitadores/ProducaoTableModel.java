@@ -4,7 +4,6 @@
  */
 package br.com.cmr.view.producaodigitadores;
 
-import br.com.cmr.model.entidade.producao.Producao;
 import br.com.cmr.model.entidade.producao.ProducaoDigitadores;
 import java.text.SimpleDateFormat;
 import java.util.List;

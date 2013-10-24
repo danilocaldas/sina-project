@@ -5,7 +5,6 @@
 package br.com.cmr.view.producaodigitadores;
 
 import br.com.cmr.model.entidade.producao.Producao;
-
 import java.util.List;
 
 /**
